@@ -1,0 +1,12 @@
+<h1 class="wellHead">Welcome <span style="font-size: 18px; color: red;"><%= current_user.email %></span></h1>
+
+<p style="margin: 5px 0px;"><b>Your messages: </b></p>
+<% @pings.each do |ping| %>
+<div class="boxing">
+	<div>Sender: <span style="color: red;"><%= ping.from %></span></div>
+	<div style="color: #4CAF50; padding-top: 10px;"><%= ping.message %></div>
+	<div class="aDel"><%= link_to "Delete", ping, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+</div>
+<% end %>
+
+<div class="chatBox"><div class="btnref"><a href="/pings/new" class="aChat">Click to Chat</a></div></div>

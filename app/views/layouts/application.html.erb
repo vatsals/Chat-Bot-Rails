@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatBot</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="container-fluid">
+	  	<header class="headMade">
+		  	<% if signed_in? %>
+		      Signed in as: <%= current_user.email %>
+		      <%= button_to 'Sign out', sign_out_path, method: :delete %>
+		    <% else %>
+		      <%= link_to 'Sign in', sign_in_path %>
+		    <% end %>
+		</header>
+		<div class="col-md-4 col-sm-3 col-xs-12">
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+		    <section class="mid">
+		    	<div id="flash">
+			      <% flash.each do |key, value| %>
+			        <div class="flash <%= key %>"><%= value %></div>
+			      <% end %>
+			    </div>
+			    <%= yield %>
+		    </section>
+		</div>
+		<div class="col-md-4 col-sm-3 col-xs-12">
+		</div>
+	</div>
+  </body>
+</html>
